@@ -1,0 +1,70 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "prettier --check src/**/*.ts",
+    "size": "size-limit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "prettier --check src/**/*.ts"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "name": "photo-flex-layout",
+  "description": "Simple for use and beutiful layout for photo",
+  "keywords": [
+    "flex",
+    "layout",
+    "photo",
+    "google",
+    "google-photo",
+    "flex-layout"
+  ],
+  "author": "Dmitriy Skrylnikov <skrylnikovd@ya.ru>",
+  "repository": "skrylnikov/photo-flex-layout",
+  "module": "dist/photo-flex-layout.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/photo-flex-layout.cjs.production.min.js",
+      "limit": "2 KB"
+    },
+    {
+      "path": "dist/photo-flex-layout.esm.js",
+      "limit": "3 KB"
+    }
+  ],
+  "dependencies": {
+    "tinyqueue": "^2.0.3"
+  },
+  "devDependencies": {
+    "@size-limit/file": "^5.0.1",
+    "@types/jest": "^26.0.24",
+    "@weiran.zsd/tsdx": "^0.15.2",
+    "browserslist": "^4.16.6",
+    "prettier": "^1.19.1",
+    "size-limit": "^5.0.1"
+  }
+}
