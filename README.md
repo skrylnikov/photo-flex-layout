@@ -1,5 +1,10 @@
 # Photo Flex Layout
 
+![Github license](https://badgen.net/github/license/skrylnikov/photo-flex-layout)
+[![Npm version](https://badgen.net/npm/v/photo-flex-layout)](https://www.npmjs.com/package/photo-flex-layout)
+![Npm types](https://badgen.net/npm/types/photo-flex-layout)
+[![Bundlephobia size](https://badgen.net/bundlephobia/minzip/photo-flex-layout)](https://bundlephobia.com/package/photo-flex-layout)
+
 Simple for use and beutiful layout for photo.
 
 - **Small** 2 kbytes (minified and gzipped). Size Limit controls the size.
