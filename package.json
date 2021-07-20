@@ -7,12 +7,12 @@
     "dist"
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "browserslist": [
     "defaults",
     "not IE 11",
-    "maintained node versions"
+    "node >=14"
   ],
   "scripts": {
     "start": "tsdx watch",
