@@ -1,15 +1,10 @@
 {
   // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
-  "include": [
-    "src",
-    "types"
-  ],
+  "include": ["src", "types"],
   "compilerOptions": {
     "target": "ES2020",
     "module": "esnext",
-    "lib": [
-      "ES2020"
-    ],
+    "lib": ["ES2020"],
     "importHelpers": true,
     // output .d.ts declaration files for consumers
     "declaration": true,
@@ -35,5 +30,6 @@
     "forceConsistentCasingInFileNames": true,
     // `tsdx build` ignores this option, but it is commonly used when type-checking separately with `tsc`
     "noEmit": true,
+    "removeComments": true
   }
 }

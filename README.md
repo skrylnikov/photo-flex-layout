@@ -2,7 +2,7 @@
 
 Simple for use and beutiful layout for photo.
 
-- **Small** 1.3 kbytes (minified and gzipped). Size Limit controls the size.
+- **Small** 2 kbytes (minified and gzipped). Size Limit controls the size.
 - **Beutiful** This is implementation [Google Photo Flex Layout](https://medium.com/google-design/google-photos-45b714dfbed1)
 - **Framework agnostic**
 - It has good **TypeScript** support.
