@@ -128,5 +128,3 @@ export const photoFlexLayout = (
     boxes: result,
   };
 };
-
-export default photoFlexLayout;

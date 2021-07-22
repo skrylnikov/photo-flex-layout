@@ -2,6 +2,7 @@
   "version": "0.2.1",
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
@@ -15,9 +16,8 @@
     "node >=14"
   ],
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
+    "build": "rollup -c",
+    "test": "jest",
     "lint": "prettier --check src/**/*.ts",
     "size": "size-limit"
   },
@@ -44,26 +44,34 @@
   ],
   "author": "Dmitriy Skrylnikov <skrylnikovd@ya.ru>",
   "repository": "skrylnikov/photo-flex-layout",
-  "module": "dist/photo-flex-layout.esm.js",
   "size-limit": [
     {
-      "path": "dist/photo-flex-layout.cjs.production.min.js",
+      "path": "dist/index.js",
       "limit": "2 KB"
     },
     {
-      "path": "dist/photo-flex-layout.esm.js",
-      "limit": "3 KB"
+      "path": "dist/index.mjs",
+      "limit": "2 KB"
     }
   ],
   "dependencies": {
     "tinyqueue": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-typescript": "^7.14.5",
     "@size-limit/file": "^5.0.1",
     "@types/jest": "^26.0.24",
-    "@weiran.zsd/tsdx": "^0.15.2",
+    "babel-jest": "^27.0.6",
     "browserslist": "^4.16.6",
+    "jest": "^27.0.6",
     "prettier": "^1.19.1",
+    "rollup": "^2.53.3",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-dts": "^3.0.2",
+    "rollup-plugin-esbuild": "^4.5.0",
+    "rollup-plugin-terser": "^5.3.1",
     "size-limit": "^5.0.1"
   }
 }
