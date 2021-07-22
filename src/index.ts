@@ -1,3 +1,5 @@
+export * from './types';
+
 import {
   IInput,
   IPhotoFlexLayoutOptions,
