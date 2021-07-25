@@ -109,7 +109,7 @@ export const photoFlexLayout = (
     ) {
       const aspectRatio = aspectRatioList[aspectRatioId];
 
-      const width = Math.round(height * aspectRatio);
+      const width = Math.round(height * aspectRatio * 100) / 100;
 
       result.push({
         width,

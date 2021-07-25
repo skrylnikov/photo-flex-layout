@@ -8,7 +8,7 @@ import {
 } from './types';
 
 export const importToAspectRatioList = (inputList: IInput): IAspectRatioList =>
-  inputList.map((input) =>
+  inputList.map(input =>
     typeof input === 'number' ? input : input.width / input.height,
   );
 
@@ -108,7 +108,7 @@ export const calcCommonHeight = ({
   horizontalBoxSpacing,
 }: IGetCommonHeightOptions) => {
   const rowWidth =
-    containerWidth - aspectRatioList.length * (horizontalBoxSpacing * 2);
+    containerWidth - aspectRatioList.length * horizontalBoxSpacing;
 
   const totalAspectRatio = aspectRatioList.reduce(
     (acc, ratio) => acc + ratio,
