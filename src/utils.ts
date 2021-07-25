@@ -8,7 +8,7 @@ import {
 } from './types';
 
 export const importToAspectRatioList = (inputList: IInput): IAspectRatioList =>
-  inputList.map(input =>
+  inputList.map((input) =>
     typeof input === 'number' ? input : input.width / input.height,
   );
 

@@ -25,32 +25,34 @@ interface IMakeGetNeighborsOptions {
 }
 
 // return function that gets the neighboring nodes of node and returns costs
-const makeGetNeighbors = ({
-  aspectRatioList,
-  targetRowHeight,
-  containerWidth,
-  limitNodeSearch,
-  horizontalBoxSpacing,
-}: IMakeGetNeighborsOptions) => (start: number) => {
-  const results = new Map<number, number>();
-  // start = +start;
-  results.set(start, 0);
-  for (let i = start + 1; i < aspectRatioList.length + 1; ++i) {
-    if (i - start > limitNodeSearch) break;
-    results.set(
-      i,
-      calcCost({
-        aspectRatioList,
-        start,
-        end: i,
-        containerWidth,
-        targetRowHeight,
-        horizontalBoxSpacing,
-      }),
-    );
-  }
-  return results;
-};
+const makeGetNeighbors =
+  ({
+    aspectRatioList,
+    targetRowHeight,
+    containerWidth,
+    limitNodeSearch,
+    horizontalBoxSpacing,
+  }: IMakeGetNeighborsOptions) =>
+  (start: number) => {
+    const results = new Map<number, number>();
+    // start = +start;
+    results.set(start, 0);
+    for (let i = start + 1; i < aspectRatioList.length + 1; ++i) {
+      if (i - start > limitNodeSearch) break;
+      results.set(
+        i,
+        calcCost({
+          aspectRatioList,
+          start,
+          end: i,
+          containerWidth,
+          targetRowHeight,
+          horizontalBoxSpacing,
+        }),
+      );
+    }
+    return results;
+  };
 
 export const photoFlexLayout = (
   input: IInput,
@@ -64,12 +66,8 @@ export const photoFlexLayout = (
     config.targetRowHeight,
   );
 
-  const {
-    targetRowHeight,
-    containerWidth,
-    containerPadding,
-    boxSpacing,
-  } = config;
+  const { targetRowHeight, containerWidth, containerPadding, boxSpacing } =
+    config;
 
   const getNeighbors = makeGetNeighbors({
     targetRowHeight,

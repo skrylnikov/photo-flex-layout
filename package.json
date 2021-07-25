@@ -23,7 +23,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "prettier --check src/**/*.ts"
+      "pre-commit": "prettier --write src/**/*.ts"
     }
   },
   "prettier": {
