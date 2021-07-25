@@ -89,12 +89,16 @@ export const photoFlexLayout = (
   for (let rowId = 0; rowId < path.length - 1; ++rowId) {
     const row = aspectRatioList.slice(path[rowId], path[rowId + 1]);
 
-    const height = calcCommonHeight({
+    let height = calcCommonHeight({
       aspectRatioList: row,
       containerWidth:
         containerWidth - containerPadding.left - containerPadding.right,
       horizontalBoxSpacing: boxSpacing.horizontal,
     });
+
+    if (rowId === path.length - 2) {
+      height = Math.min(height, targetRowHeight * 1.5);
+    }
 
     let left = containerPadding.left;
 
