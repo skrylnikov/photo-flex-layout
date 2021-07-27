@@ -19,12 +19,8 @@
     "build": "rollup -c",
     "test": "jest",
     "lint": "prettier --check src/**/*.ts",
+    "lint:w": "prettier --write src/**/*.ts",
     "size": "size-limit"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "prettier --write src/**/*.ts"
-    }
   },
   "prettier": {
     "printWidth": 80,
@@ -58,6 +54,7 @@
     "tinyqueue": "^2.0.3"
   },
   "devDependencies": {
+    "@arkweid/lefthook": "^0.7.6",
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-typescript": "^7.14.5",
