@@ -12,58 +12,34 @@ Simple for use and beutiful layout for photo.
 - **Framework agnostic**
 - It has good **TypeScript** support.
 
-```typescript
-import { photoFlexLayout } from 'photo-flex-layout';
-
-const { containerHeight, boxes } = photoFlexLayout([0.5, 1.5, 1, 1, 1, 1, 1]);
-
-containerHeight; //183
-
-boxes; // [{width: 77, height: 163, top: 10, left: 10, ...}, {width: 230, height: 163, top: 10, left: 97, ...}, ...]
-```
-
 ## Install
 
 ```bash
-npm install --save photo-flex-layout
+npm add photo-flex-layout
 ```
 
 ## Usage
 
-Without config:
-
 ```typescript
-photoFlexLayout([0.5, 1.5, 1]);
-```
+import { photoFlexLayout } from 'photo-flex-layout';
 
-With width and height:
-
-```typescript
-photoFlexLayout([
-  { width: 100, height: 200 },
-  { width: 200, height: 200 },
-]);
-```
-
-Without paddings
-
-```typescript
-photoFlexLayout([...], { boxSpacing: 0, containerPadding: 0 });
-```
-
-With custom paddings
-
-```typescript
-photoFlexLayout([...], {
-  boxSpacing: { horizontal: 10, vertical: 5 },
-  containerPadding: { top: 20, bottom: 0, left: 0, right: 0 },
+const { containerHeight, boxes } = photoFlexLayout({
+  targetRowHeight: 200,
+  containerWidth: 500,
+  boxSpacing: 0,
+  items: [
+    { width: 100, height: 200 },
+    { width: 150, height: 100 },
+    { width: 100, height: 100 },
+    { width: 100, height: 100 },
+    { width: 100, height: 100 },
+    { width: 100, height: 100 },
+  ],
 });
-```
 
-With custom width and target height
+containerHeight; //334
 
-```typescript
-photoFlexLayout([...], { targetRowHeight: 200, containerWidth: 500 });
+boxes; // [{width: 83.5, height: 167, top: 0, left: 0, ...}, {width: 250.5, height: 167, top: 10, left: 83.5, ...}, ...]
 ```
 
 ## Thanks

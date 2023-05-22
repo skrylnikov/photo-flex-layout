@@ -1,19 +1,12 @@
 export * from './types';
 
 import {
-  IInput,
   IPhotoFlexLayoutOptions,
   IAspectRatioList,
   ILayoutBox,
   IPhotoFlexLayoutResult,
 } from './types';
-import {
-  importToAspectRatioList,
-  parseOptions,
-  calcLimitNodeSearch,
-  calcCost,
-  calcCommonHeight,
-} from './utils';
+import { calcLimitNodeSearch, calcCost, calcCommonHeight } from './utils';
 import { findShortestPath } from './find-shortest-path';
 
 interface IMakeGetNeighborsOptions {
@@ -54,51 +47,52 @@ const makeGetNeighbors =
     return results;
   };
 
-export const photoFlexLayout = (
-  input: IInput,
-  options?: IPhotoFlexLayoutOptions,
-): IPhotoFlexLayoutResult => {
-  const aspectRatioList = importToAspectRatioList(input);
-  const config = parseOptions(options);
+export const photoFlexLayout = ({
+  items,
+  containerWidth,
+  targetRowHeight,
+  boxSpacing,
+}: IPhotoFlexLayoutOptions): IPhotoFlexLayoutResult => {
+  const aspectRatioList = items.map((x) => x.width / x.height);
 
-  const limitNodeSearch = calcLimitNodeSearch(
-    config.containerWidth,
-    config.targetRowHeight,
-  );
+  // containerWidth =
+  //   containerWidth % 2 === 0 ? containerWidth : containerWidth - 1;
 
-  const { targetRowHeight, containerWidth, containerPadding, boxSpacing } =
-    config;
+  const limitNodeSearch = calcLimitNodeSearch(containerWidth, targetRowHeight);
+
+  const horizontalBoxSpacing =
+    typeof boxSpacing === 'number' ? boxSpacing : boxSpacing.horizontal;
+  const verticalBoxSpacing =
+    typeof boxSpacing === 'number' ? boxSpacing : boxSpacing.vertical;
 
   const getNeighbors = makeGetNeighbors({
     targetRowHeight,
-    containerWidth:
-      containerWidth - containerPadding.left - containerPadding.right,
+    containerWidth,
     aspectRatioList,
     limitNodeSearch,
-    horizontalBoxSpacing: boxSpacing.horizontal,
+    horizontalBoxSpacing,
   });
 
   const path = findShortestPath(getNeighbors, 0, aspectRatioList.length);
 
   const result: ILayoutBox[] = [];
 
-  let containerHeight = containerPadding.top;
+  let containerHeight = 0;
 
   for (let rowId = 0; rowId < path.length - 1; ++rowId) {
     const row = aspectRatioList.slice(path[rowId], path[rowId + 1]);
 
     let height = calcCommonHeight({
       aspectRatioList: row,
-      containerWidth:
-        containerWidth - containerPadding.left - containerPadding.right,
-      horizontalBoxSpacing: boxSpacing.horizontal,
+      containerWidth,
+      horizontalBoxSpacing,
     });
 
-    if (rowId === path.length - 2) {
-      height = Math.min(height, targetRowHeight * 1.5);
+    if (rowId === path.length - 2 && height > targetRowHeight * 1.3) {
+      height = targetRowHeight;
     }
 
-    let left = containerPadding.left;
+    let left = 0;
 
     for (
       let aspectRatioId = path[rowId];
@@ -118,15 +112,13 @@ export const photoFlexLayout = (
         rowId,
       });
 
-      left += width + boxSpacing.horizontal;
+      left += width + horizontalBoxSpacing;
     }
-    containerHeight += height + boxSpacing.vertical;
+    containerHeight += Math.ceil(height + verticalBoxSpacing);
   }
 
-  containerHeight += containerPadding.bottom;
-
   return {
-    containerHeight,
+    containerHeight: containerHeight,
     boxes: result,
   };
 };
