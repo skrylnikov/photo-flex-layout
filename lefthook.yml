@@ -15,5 +15,5 @@ pre-commit:
   parallel: true
   commands:
     prettier:
-      glob: '*.{js,ts}'
+      glob: 'src/*.{js,ts}'
       run: npx prettier --check {staged_files}
